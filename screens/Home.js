@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, CheckBox, Input, Text } from "react-native-elements";
+import { Button, Input, Text } from "react-native-elements";
 import  Icon  from 'react-native-vector-icons/FontAwesome';
 import styles from "../style/MainStyle";
 import { useNavigation } from '@react-navigation/native';
-import { TextInputMask } from "react-native-masked-text";
 
 export default function Cadastro() {
 
@@ -15,23 +14,26 @@ export default function Cadastro() {
   const navigation = useNavigation();
   const [email, setEmail] = useState(null);
   const [nome, setNome] = useState(null);
-  const [cpf, setCpf] = useState(null);
-  const [telefone, setTelefone] = useState(null);
   const [isSelected, setisSelected]  = useState(false);
   const [erroremail, setErrorEmail] = useState(null);
   const [errornome, setErrorNome] = useState(null);
-  const [errorcpf, setErrorCpf] = useState(null);
-  const [errortelefone, setErrorTelefone] = useState(null);
- 
+
+  let cpffield = null
+  let telefonefield = null
 
 const salvar = () => {
-  alert("cadastrado com sucesso!");
-  navigation.navigate("Home");
+  console.log('Salvo !');
+    
+}
+
+const voltar = () => {
+  navigation.navigate("Login")
 
 }
+
   return (
     <View style={[styles.container, specificStyle.specificContainer]}>
-      <Text style={specificStyle.Text} h3> Registre-se </Text>
+      <Text style={specificStyle.Text} h3> HOME </Text>
 
       <Input
         placeholder="Nome: "
@@ -40,37 +42,31 @@ const salvar = () => {
       />
 
       <Input
-        placeholder="E-mail: "
+        placeholder="RA: "
         onChangeText={value => {
         setEmail(value)
         setErrorEmail(null)
         }}
-        keyboardType="email-address"
-        errorMessage={erroremail}
+        keyboardType="numeric"
+      />
+
+      <Input
+        placeholder="Semestre: "
+        onChangeText={value => {
+        setEmail(value)
+        setErrorEmail(null)
+        }}
+        keyboardType="numeric"
       />
     
       <Input
-        placeholder="Senha: "
-        onChangeText={(value) => setPassword(value)}
-        secureTextEntry = {true}
+        placeholder="Disciplina: "
+        onChangeText={value => {
+        setEmail(value)
+        setErrorEmail(null)
+        }}
       />
-
-      <Input
-        placeholder="Confirme a senha: "
-        onChangeText={(value) => setPassword2(value)}
-        secureTextEntry = {true}
-      />
-    <CheckBox
-        title = 'Aceito os termos de uso'
-        checkedIcon='check'
-        uncheckedIcon='square-o'
-        checkedColor="green"
-        uncheckedColor="red"
-        checked={isSelected}
-        onPress={() => setisSelected(!isSelected)}
-
-    />
-
+    
     <Button 
         icon={
         <Icon
@@ -82,6 +78,12 @@ const salvar = () => {
         title = "Salvar"
         buttonStyle = {specificStyle.button}
       onPress={() => salvar()}
+      />
+    
+    <Button 
+        title = "Voltar"
+        buttonStyle = {specificStyle.button}
+      onPress={() => voltar()}
       />
    
    </View>

@@ -11,11 +11,11 @@ export default function Login() {
   const navigation = useNavigation();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-
+  
   const entrar = () => {
     navigation.reset({
         index: 0,
-        routes: [{ name: "Principal" }]
+        routes: [{ name: "Home" }]
 
     })
   }
@@ -26,7 +26,7 @@ export default function Login() {
 
   return (
     <View style={[styles.container, specificStyle.specificContainer]}>
-      <Text style={specificStyle.Text} h3> EventX </Text>
+      <Text style={specificStyle.Text} h3> Tela de Login  </Text>
       <Input
         placeholder="E-mail: "
         leftIcon={{ type: "font-awesome", name: "envelope" }}
@@ -43,14 +43,7 @@ export default function Login() {
 
     <View style = {styles.botoes}>
         <Button 
-          icon={
-          <Icon
-           name= "check"
-           size = {15}
-           color = "white"
-         />
-       }
-       title = "Entrar"
+       title = "Entrar na Home"
        onPress={() => entrar()}
        />
         <Button 
@@ -61,9 +54,11 @@ export default function Login() {
            color = "white"
             />
           }
-          title = "Cadastrar"
+          title = "Registrar"
         onPress={() => Cadastro()}
         />
+          <Text style={specificStyle.fraseCadastrar}> Clique no botão para registrar </Text>
+
       </View>
   </View>
   );
@@ -77,6 +72,10 @@ const specificStyle = StyleSheet.create({
   },
   button: {
     width: 110,
+  
+  },
+  fraseCadastrar: {
+    color: 'red',
   }
 
 })
